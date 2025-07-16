@@ -1,13 +1,13 @@
 pipeline {
     agent any
+
     stages {
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build('hello-nginx-image')
-                }
+                sh 'docker build -t hello-nginx-image .'
             }
         }
+
         stage('Run Container') {
             steps {
                 sh 'docker rm -f hello-nginx-container || true'
